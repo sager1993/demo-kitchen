@@ -63,6 +63,14 @@ class App extends Component {
       };
     });
   };
+  deleteAll = e => {
+    e.preventDefault();
+    this.setState(state => {
+      return {
+        ingredientsList: []
+      };
+    });
+  };
 
   buildGrid() {
     return this.state.recipes.map((recipe, index) => {
@@ -178,6 +186,12 @@ class App extends Component {
                 style={{ display: "block", margin: "auto 10px" }}
               >
                 Add Ingredient
+              </button>
+              <button
+                onClick={this.deleteAll}
+                style={{ display: "block", margin: "auto 10px" }}
+              >
+                Clear the List
               </button>
             </form>
             {this.buildList()}
