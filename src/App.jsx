@@ -78,7 +78,6 @@ class App extends Component {
   }
 
   removeIngredient(index) {
-    console.log("TCL: App -> removeIngredient -> index", index);
     this.setState(state => {
       const newList = [...this.state.ingredientsList];
       newList.splice(index, 1);
@@ -101,16 +100,18 @@ class App extends Component {
             <Button
               variant="outlined"
               color="primary"
+              style={{ display: "block", margin: "auto 10px" }}
               onClick={this.handleEditOpen.bind(this, index, ingred)}
             >
               Edit
             </Button>
-            <button
+            <Button
+              color="secondary"
               onClick={this.removeIngredient.bind(this, index)}
               style={{ display: "block", margin: "auto 10px" }}
             >
               Delete!
-            </button>
+            </Button>
           </Card>
         </Grid>
       );
@@ -172,7 +173,12 @@ class App extends Component {
                 value={this.state.newIngredient}
                 onInput={e => this.setState({ newIngredient: e.target.value })}
               />
-              <button onClick={this.addIngredient}>Click!</button>
+              <button
+                onClick={this.addIngredient}
+                style={{ display: "block", margin: "auto 10px" }}
+              >
+                Add Ingredient
+              </button>
             </form>
             {this.buildList()}
           </Card>
