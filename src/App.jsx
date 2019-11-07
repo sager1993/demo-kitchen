@@ -6,12 +6,15 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
+import CardActions from "@material-ui/core/CardActions";
 import TextField from "@material-ui/core/TextField";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
+
+import HeaderRow from "./components/HeaderRow.jsx";
 
 class App extends Component {
   apiURL =
@@ -23,6 +26,7 @@ class App extends Component {
       isLoading: false,
       recipes: [],
       ingredientsList: [],
+      favoriteRecipes: [],
       newIngredient: "",
       editIngredient: "",
       editIndex: null,
@@ -72,19 +76,25 @@ class App extends Component {
     });
   };
 
-  buildGrid() {
-    return this.state.recipes.map((recipe, index) => {
+  buildGrid(recipeArray) {
+    return recipeArray.map((recipe, index) => {
       return (
         <Grid xs={4} item key={index}>
           <Card style={{ margin: "10px" }}>
             <CardHeader title={recipe.title} subheader={recipe.ingredients} />
             <CardMedia image={recipe.thumbnail} title={recipe.title} />
+            <CardActions>
+              <Button size="small" onClick={this.saveRecipe.bind(this, recipe)}>
+                Save Recipe
+              </Button>
+            </CardActions>
           </Card>
         </Grid>
       );
     });
   }
 
+  //  remove a specific ingredient
   removeIngredient(index) {
     this.setState(state => {
       const newList = [...this.state.ingredientsList];
@@ -95,9 +105,24 @@ class App extends Component {
     });
   }
 
+  //  Save the Recipe
+  saveRecipe(recipe) {
+    this.setState(state => {
+      const newList = [...this.state.favoriteRecipes, recipe];
+      console.log(newList);
+      return {
+        favoriteRecipes: newList
+      };
+    });
+  }
+
+  //  Build and show the list of ingriedients
   buildList() {
+    //  Return the saved the ingriedients, map through them then return components
     return this.state.ingredientsList.map((ingred, index) => {
+      //  return a component for ingriedient as grid item, with the text as a card
       return (
+        //  index every item
         <Grid xs={12} item key={index}>
           <Card style={{ padding: "5px", margin: "5px", display: "flex" }}>
             <h4
@@ -105,6 +130,7 @@ class App extends Component {
             >
               {ingred}
             </h4>
+            {/* Edit item button */}
             <Button
               variant="outlined"
               color="primary"
@@ -113,12 +139,13 @@ class App extends Component {
             >
               Edit
             </Button>
+            {/* Delete item button */}
             <Button
               color="secondary"
               onClick={this.removeIngredient.bind(this, index)}
               style={{ display: "block", margin: "auto 10px" }}
             >
-              Delete!
+              Delete
             </Button>
           </Card>
         </Grid>
@@ -126,6 +153,7 @@ class App extends Component {
     });
   }
 
+  //  Closing of the edit
   handleClose = () => {
     this.setState(() => {
       return {
@@ -136,6 +164,7 @@ class App extends Component {
     });
   };
 
+  //  Open the ingrdient edit
   handleEditOpen = (index, ingred) => {
     this.setState(() => {
       return {
@@ -162,15 +191,12 @@ class App extends Component {
     return (
       <Grid container>
         {/* Header Row */}
-        <Grid xs={12} item style={{ backgroundColor: "grey", color: "white" }}>
-          <h1 style={{ padding: "10px" }}>The Recipe Guru</h1>
-          <div style={{ padding: "10px" }}>
-            {this.state.isLoading ? `LOADING!` : ``}
-          </div>
-        </Grid>
+        <HeaderRow isLoading={this.state.isLoading} />
+
         {/* Body Columns */}
+        {/* List Item Column */}
         <Grid xs={3} item>
-          <Card style={{ margin: "10px" }}>
+          <Card color="primary" style={{ margin: "10px" }}>
             <CardHeader title="Ingredients List" />
             <hr style={{ margin: "10px" }}></hr>
             <form onSubmit={this.addIngredient}>
@@ -220,8 +246,9 @@ class App extends Component {
             </DialogActions>
           </Dialog>
         </Grid>
+        {/* list recipes */}
         <Grid xs={9} item>
-          <Grid container>{this.buildGrid()}</Grid>
+          <Grid container>{this.buildGrid(this.state.recipes)}</Grid>
         </Grid>
       </Grid>
     );
