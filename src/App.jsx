@@ -8,7 +8,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
 import TextField from "@material-ui/core/TextField";
-
+import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -84,6 +84,9 @@ class App extends Component {
             <CardHeader title={recipe.title} subheader={recipe.ingredients} />
             <CardMedia image={recipe.thumbnail} title={recipe.title} />
             <CardActions>
+              <Link href={recipe.href} target="_blank">
+                Recipe Page
+              </Link>
               <Button size="small" onClick={this.saveRecipe.bind(this, recipe)}>
                 Save Recipe
               </Button>
@@ -248,7 +251,10 @@ class App extends Component {
         </Grid>
         {/* list recipes */}
         <Grid xs={9} item>
+          <h1>Seaches</h1>
           <Grid container>{this.buildGrid(this.state.recipes)}</Grid>
+          <h1>Saved Recipes</h1>
+          <Grid container>{this.buildGrid(this.state.favoriteRecipes)}</Grid>
         </Grid>
       </Grid>
     );
