@@ -17,6 +17,10 @@ The Recipe Guru
 1. The ingridients page: <https://wireframe.cc/9kWXDo>
 2. The recipes page: <https://wireframe.cc/uzowNQ> (pending)
 
+## Live Link
+
+<https://tender-fermat-9d1b9f.netlify.com>
+
 ## Usage
 
 The user list the ingredients they have then it will show 10 recipe cards that match their ingriedients. Users can save a recipe and access its details from the console.
