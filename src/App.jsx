@@ -103,11 +103,19 @@ class App extends Component {
             <CardHeader title={recipe.title} subheader={recipe.ingredients} />
             <CardMedia image={recipe.thumbnail} title={recipe.title} />
             <CardActions>
-              <Link href={recipe.href} target="_blank">
+              <Link
+                href={recipe.href}
+                target="_blank"
+                style={{ display: "block" }}
+              >
                 Recipe Page
               </Link>
               <br />
-              <Button size="small" onClick={this.saveRecipe.bind(this, recipe)}>
+              <Button
+                size="small"
+                onClick={this.saveRecipe.bind(this, recipe)}
+                style={{ display: "block" }}
+              >
                 Save Recipe
               </Button>
             </CardActions>
