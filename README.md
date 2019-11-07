@@ -1,68 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# README File
 
-## Available Scripts
+## Name
 
-In the project directory, you can run:
+The Recipe Guru
 
-### `npm start`
+## User Stories
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. I want to make a list for the ingridients that I have.
+2. I want to add and remove ingridients from the list.
+3. I want to edit my ingridients list.
+4. I want to search recipes based on my ingridients list.
+5. I want to save recipes to a favorite list.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Wireframes
 
-### `npm test`
+1. The ingridients page: <https://wireframe.cc/9kWXDo>
+2. The recipes page: <https://wireframe.cc/uzowNQ> (pending)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live Link
 
-### `npm run build`
+<https://tender-fermat-9d1b9f.netlify.com>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The user list the ingredients they have then it will show 10 recipe cards that match their ingriedients. Users can save a recipe and access its details from the console.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies
 
-### `npm run eject`
+It's written in React.Js, it uses Material UI as styling library. It imports APIs, I used Postman for development.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+It needs a modern browser!!
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Difficulties
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Refactoring components and state managment in React.
 
-## Learn More
+## Roadmap
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Seperate the App into smaller components, add colors and pictures to the website, and link a saved recipes page.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Authors
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Sager Alarifi
