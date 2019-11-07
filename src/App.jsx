@@ -1,7 +1,9 @@
+//  React imports
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 
+//  Material UI imports
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -14,26 +16,37 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+//  Components Imports
 import HeaderRow from "./components/HeaderRow.jsx";
 
+//  Main app class
 class App extends Component {
+  //  API url
   apiURL =
     "https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?";
 
   constructor(props) {
     super(props);
+    //  Declaring states
     this.state = {
+      //  API state
       isLoading: false,
+      //  Searched Recipes
       recipes: [],
+      //  Added Ingredients
       ingredientsList: [],
+      //  Saved Recipes
       favoriteRecipes: [],
+      //  Add new Ingredient
       newIngredient: "",
+      //  Edit Ingredient states
       editIngredient: "",
       editIndex: null,
       showEdit: false
     };
   }
 
+  //  API call function
   apiCall = async url => {
     try {
       this.setState({ isLoading: true });
@@ -46,10 +59,12 @@ class App extends Component {
     }
   };
 
+  //  Did mount for intial call the API
   componentDidMount() {
     this.apiCall(this.apiURL);
   }
 
+  //  Call the API if saved ingredients change
   componentDidUpdate(prevProps, prevState) {
     const oldListCSV = prevState.ingredientsList.join(",");
     const newListCSV = this.state.ingredientsList.join(",");
@@ -58,6 +73,7 @@ class App extends Component {
     }
   }
 
+  //  Add ingredient function
   addIngredient = e => {
     e.preventDefault();
     this.setState(state => {
@@ -67,6 +83,8 @@ class App extends Component {
       };
     });
   };
+
+  //  Delete all ingredients function
   deleteAll = e => {
     e.preventDefault();
     this.setState(state => {
@@ -76,6 +94,7 @@ class App extends Component {
     });
   };
 
+  //  Build the Recipes from the given array, and show them in a card
   buildGrid(recipeArray) {
     return recipeArray.map((recipe, index) => {
       return (
@@ -156,6 +175,7 @@ class App extends Component {
     });
   }
 
+  /* Edit Section */
   //  Closing of the edit
   handleClose = () => {
     this.setState(() => {
@@ -178,6 +198,7 @@ class App extends Component {
     });
   };
 
+  //  Submit the edit
   handleEditSubmit = e => {
     e.preventDefault();
     this.setState(state => {
@@ -202,6 +223,7 @@ class App extends Component {
           <Card color="primary" style={{ margin: "10px" }}>
             <CardHeader title="Ingredients List" />
             <hr style={{ margin: "10px" }}></hr>
+            {/* Text field to add an ingredient */}
             <form onSubmit={this.addIngredient}>
               <TextField
                 style={{ margin: "10px", display: "flex", flexGrow: "1" }}
@@ -223,8 +245,10 @@ class App extends Component {
                 Clear the List
               </button>
             </form>
+            {/* show saved ingredients */}
             {this.buildList()}
           </Card>
+          {/* Edit Prompt */}
           <Dialog
             open={this.state.showEdit}
             onClose={this.handleClose}
@@ -248,11 +272,14 @@ class App extends Component {
               </Button>
             </DialogActions>
           </Dialog>
+          {/* End of the edit prompt */}
         </Grid>
         {/* list recipes */}
         <Grid xs={9} item>
+          {/* List Searched Recipes*/}
           <h1>Seaches</h1>
           <Grid container>{this.buildGrid(this.state.recipes)}</Grid>
+          {/* List Saved Recipes*/}
           <h1>Saved Recipes</h1>
           <Grid container>{this.buildGrid(this.state.favoriteRecipes)}</Grid>
         </Grid>

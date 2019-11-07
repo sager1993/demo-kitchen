@@ -35,7 +35,7 @@ Refactoring components and state managment in React.
 
 ## Roadmap
 
-Seperate the App into smaller components, add colors to the website, and link a saved recipes page.
+Seperate the App into smaller components, add colors and pictures to the website, and link a saved recipes page.
 
 ## Authors
 
