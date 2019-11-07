@@ -221,77 +221,90 @@ class App extends Component {
 
   render() {
     return (
-      <Grid container>
-        {/* Header Row */}
-        <HeaderRow isLoading={this.state.isLoading} />
+      <div>
+        <Grid container>
+          {/* Header Row */}
+          <HeaderRow isLoading={this.state.isLoading} />
 
-        {/* Body Columns */}
-        {/* List Item Column */}
-        <Grid xs={3} item>
-          <Card color="primary" style={{ margin: "10px" }}>
-            <CardHeader title="Ingredients List" />
-            <hr style={{ margin: "10px" }}></hr>
-            {/* Text field to add an ingredient */}
-            <form onSubmit={this.addIngredient}>
-              <TextField
-                style={{ margin: "10px", display: "flex", flexGrow: "1" }}
-                label="Add Ingredient"
-                variant="outlined"
-                value={this.state.newIngredient}
-                onInput={e => this.setState({ newIngredient: e.target.value })}
-              />
-              <button
-                onClick={this.addIngredient}
-                style={{ display: "block", margin: "auto 10px" }}
-              >
-                Add Ingredient
-              </button>
-              <button
-                onClick={this.deleteAll}
-                style={{ display: "block", margin: "auto 10px" }}
-              >
-                Clear the List
-              </button>
-            </form>
-            {/* show saved ingredients */}
-            {this.buildList()}
-          </Card>
-          {/* Edit Prompt */}
-          <Dialog
-            open={this.state.showEdit}
-            onClose={this.handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">Edit Item</DialogTitle>
-            <form onSubmit={this.handleEditSubmit}>
-              <TextField
-                style={{ margin: "10px", display: "flex", flexGrow: "1" }}
-                label="Edit Ingredient"
-                variant="outlined"
-                value={this.state.editIngredient}
-                onInput={e => this.setState({ editIngredient: e.target.value })}
-              />
-            </form>
-            <DialogActions>
-              <Button onClick={this.handleClose}>Close</Button>
-              <Button onClick={this.handleEditSubmit} color="primary">
-                Submit
-              </Button>
-            </DialogActions>
-          </Dialog>
-          {/* End of the edit prompt */}
+          {/* Body Columns */}
+          {/* List Item Column */}
+          <Grid xs={3} item>
+            <Card color="primary" style={{ margin: "10px" }}>
+              <CardHeader title="Ingredients List" />
+              <hr style={{ margin: "10px" }}></hr>
+              {/* Text field to add an ingredient */}
+              <form onSubmit={this.addIngredient}>
+                <TextField
+                  style={{ margin: "10px", display: "flex", flexGrow: "1" }}
+                  label="Add Ingredient"
+                  variant="outlined"
+                  value={this.state.newIngredient}
+                  onInput={e =>
+                    this.setState({ newIngredient: e.target.value })
+                  }
+                />
+                <button
+                  onClick={this.addIngredient}
+                  style={{ display: "block", margin: "auto 10px" }}
+                >
+                  Add Ingredient
+                </button>
+                <button
+                  onClick={this.deleteAll}
+                  style={{ display: "block", margin: "auto 10px" }}
+                >
+                  Clear the List
+                </button>
+              </form>
+              {/* show saved ingredients */}
+              {this.buildList()}
+            </Card>
+            {/* Edit Prompt */}
+            <Dialog
+              open={this.state.showEdit}
+              onClose={this.handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">Edit Item</DialogTitle>
+              <form onSubmit={this.handleEditSubmit}>
+                <TextField
+                  style={{ margin: "10px", display: "flex", flexGrow: "1" }}
+                  label="Edit Ingredient"
+                  variant="outlined"
+                  value={this.state.editIngredient}
+                  onInput={e =>
+                    this.setState({ editIngredient: e.target.value })
+                  }
+                />
+              </form>
+              <DialogActions>
+                <Button onClick={this.handleClose}>Close</Button>
+                <Button onClick={this.handleEditSubmit} color="primary">
+                  Submit
+                </Button>
+              </DialogActions>
+            </Dialog>
+            {/* End of the edit prompt */}
+          </Grid>
+          {/* list recipes */}
+          <Grid xs={9} item>
+            {/* List Searched Recipes*/}
+            <h1>Seaches</h1>
+            <Grid container>{this.buildGrid(this.state.recipes)}</Grid>
+            {/* List Saved Recipes*/}
+            <h1>Saved Recipes</h1>
+            <Grid container>{this.buildGrid(this.state.favoriteRecipes)}</Grid>
+          </Grid>
         </Grid>
-        {/* list recipes */}
-        <Grid xs={9} item>
-          {/* List Searched Recipes*/}
-          <h1>Seaches</h1>
-          <Grid container>{this.buildGrid(this.state.recipes)}</Grid>
-          {/* List Saved Recipes*/}
-          <h1>Saved Recipes</h1>
-          <Grid container>{this.buildGrid(this.state.favoriteRecipes)}</Grid>
-        </Grid>
-      </Grid>
+        <footer style={{ textAlign: "center" }}>
+          <h5>Made with sweat and tears in SEI</h5>
+          <h6>
+            Another Special Design by{" "}
+            <a href="https://github.com/sager1993/demo-kitchen">Sager</a>
+          </h6>
+        </footer>
+      </div>
     );
   }
 }
