@@ -245,13 +245,16 @@ class App extends Component {
                 />
                 <button
                   onClick={this.addIngredient}
-                  style={{ display: "block", margin: "auto 10px" }}
+                  style={{ display: "block", margin: "5px auto 10px auto" }}
                 >
                   Add Ingredient
                 </button>
                 <button
                   onClick={this.deleteAll}
-                  style={{ display: "block", margin: "auto 10px" }}
+                  style={{
+                    display: "block",
+                    margin: "10px auto 10px auto"
+                  }}
                 >
                   Clear the List
                 </button>
