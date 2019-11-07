@@ -106,6 +106,7 @@ class App extends Component {
               <Link href={recipe.href} target="_blank">
                 Recipe Page
               </Link>
+              <br />
               <Button size="small" onClick={this.saveRecipe.bind(this, recipe)}>
                 Save Recipe
               </Button>
